@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/api/users', function () {
-    return User::all();
+Route::get('/', function () {
+    return ['Laravel' => app()->version()];
 });
+
+require __DIR__.'/auth.php';
