@@ -3,19 +3,18 @@ import { useSelector } from "react-redux";
 import { CALL_STUDENT_DATA } from "../../Redux/CallReducers";
 import { LoaderCircle } from "lucide-react";
 import ImageUploader from "../elements/ImageUploader";
+import Header from "./Header";
 
 export default function EditPhoto() {
   const student = useSelector(CALL_STUDENT_DATA);
   const [isPending, startTransition] = useTransition();
-  
+  const elements = {
+    title:'Edit Photo',
+    par:"The Page For Uploding OR Changing The Photo Of The Profile"
+  }
   return (
-    <section className="flex flex-col gap-4">
-      <div className="grid place-items-center gap-2 py-4 mb-4 border-b-1 border-purple-700">
-        <h1 className="text-2xl">Edit Photo</h1>
-        <p className="text-gray-700 dark:text-gray-400">
-          The Page For Uploding OR Changing The Photo Of The Profile
-        </p>
-      </div>
+    <>
+      <Header {...elements}/>
       <form  className="flex flex-col gap-8 items-center">
         <div className="border-2 relative border-purple-700 p-2 w-70 rounded-full">
           <img
@@ -30,6 +29,6 @@ export default function EditPhoto() {
         </div>
         <ImageUploader Transition={startTransition} email={student.email} isPending={isPending}/>
       </form>
-    </section>
+    </>
   );
 }

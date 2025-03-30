@@ -29,9 +29,10 @@ export default function Register() {
       await getCsrfToken();
       await studentRegister(fomrRegisted)
         .then(async (res) => {
-          conditionLogin(res, 201, dispatch, navigate);
-        })
+          conditionLogin(res, 201, dispatch);
+          navigate('/')
 
+        })
         .catch((err) => {
           if (err?.response?.data) {
             setErrors(err.response.data.errors);
@@ -41,50 +42,51 @@ export default function Register() {
   };
   return (
     <form onSubmit={handleLogin} className="w-full px-4 py-2">
-      <div className="grid  lg:grid-cols-2 md:grid-cols-2 gap-4">
-        <div className="grid gap-5">
-          <div className="grid gap-0.5">
-            <Input
-              addClasses="w-full"
-              label={"Nom"}
-              value={fomrRegisted.nom}
-              changeValue={setFormRegisted}
-            />
-            <HandleError errors={errors} name={"nom"} />
-          </div>
-          <div className="grid gap-0.5">
-            <Input
-              addClasses="w-full"
-              label={"Email"}
-              value={fomrRegisted.email}
-              changeValue={setFormRegisted}
-            />
-            <HandleError errors={errors} name={"email"} />
-          </div>
+      <div className="grid  lg:grid-cols-2 lg:grid-rows-2 md:grid-cols-2 md:grid-rows-2 gap-4">
+        <div className="grid gap-0.5 ">
+          <Input
+            addClasses="w-full"
+            label={"Nom"}
+            value={fomrRegisted.nom}
+            changeValue={setFormRegisted}
+          />
+          <HandleError errors={errors} name={"nom"} />
         </div>
-        <div className="grid gap-5">
-          <div className="grid gap-0.5">
-            <Input
-              addClasses="w-full"
-              label={"Prenom"}
-              value={fomrRegisted.prenom}
-              changeValue={setFormRegisted}
-            />
-            <HandleError errors={errors} name={"prenom"} />
-          </div>
-          <div className="grid gap-0.5">
-            <Input
+        <div className="grid gap-0.5">
+          <Input
+            addClasses="w-full"
+            label={"Prenom"}
+            value={fomrRegisted.prenom}
+            changeValue={setFormRegisted}
+          />
+          <HandleError errors={errors} name={"prenom"} />
+        </div>
+        <div className="grid gap-0.5 ">
+          <Input
+            addClasses="w-full"
+            label={"Email"}
+            value={fomrRegisted.email}
+            changeValue={setFormRegisted}
+          />
+          <HandleError errors={errors} name={"email"} />
+        </div>
+
+        <div className="grid gap-0.5">
+          <Input
             type="password"
-              addClasses="w-full"
-              label={"Password"}
-              value={fomrRegisted.password}
-              changeValue={setFormRegisted}
-            />
-            <HandleError errors={errors} name={"password"} />
-          </div>
+            addClasses="w-full"
+            label={"Password"}
+            value={fomrRegisted.password}
+            changeValue={setFormRegisted}
+          />
+          <HandleError errors={errors} name={"password"} />
         </div>
       </div>
-      <Submit isPendeing={isPending} content={"register"} addClasses="mt-5 w-full" />
+      <Submit
+        isPendeing={isPending}
+        content={"register"}
+        addClasses="mt-5 w-full"
+      />
       <Submit isForSubmit={false} outline={true} addClasses="mt-5 w-full">
         <Link to={"/accounts/login"}>If You Already Have Account</Link>
       </Submit>

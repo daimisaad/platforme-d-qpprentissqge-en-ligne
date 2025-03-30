@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
+            $table->string('headline')->nullable()->default('');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('fr_image')->nullable()->default('default_fr.jpg'); 
+            $table->string('fr_image')->nullable()->default('default_fr.jpg');
             $table->string('bg_image')->nullable()->default('default_bg.jpg');
             $table->timestamps();
         });

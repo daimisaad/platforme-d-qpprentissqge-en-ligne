@@ -33,10 +33,17 @@ Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
 Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
-    Route::post('/uploadphoto', [StudentController::class, 'changePhoto'])
-        ->middleware('auth')
-        ->name('change.photo');
+
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
+
+
+// Updting data
+Route::post('/uploadphoto', [StudentController::class, 'changePhoto'])
+        ->middleware('auth')
+        ->name('update.photo');
+Route::post('/updatebasics', [StudentController::class, 'updateBasics'])
+        ->middleware('auth')
+        ->name('update.basics');

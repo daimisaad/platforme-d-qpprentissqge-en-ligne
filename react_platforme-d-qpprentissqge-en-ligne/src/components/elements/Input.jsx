@@ -5,12 +5,16 @@ export default function Input({
   label = null,
   value = "",
   changeValue = null,
-  addClasses='',
+  addClasses = "",
+  isLimited = 0,
   ...props
 }) {
   const [isFocus, setIsFocus] = useState(false);
+  const calc = isLimited - value.length;
   function handleChange(e) {
-    changeValue((v) => ({ ...v, [e.target.name]: e.target.value }));
+    if (isLimited == 0 || e.target.value.length != isLimited + 1) {
+      changeValue((v) => ({ ...v, [e.target.name]: e.target.value }));
+    }
   }
   useEffect(() => {
     if (value != "" || (value?.length > 0 && !isFocus)) {
@@ -21,7 +25,7 @@ export default function Input({
     <div
       {...props}
       className={
-        "relative transition-all h-fit " +
+        "relative transition-all h-fit  lg:w-full w-fit " +
         (isFocus ? "outline-4 outline-purple-700/20 rounded" : "outline-hidden")
       }
     >
@@ -42,8 +46,21 @@ export default function Input({
         value={value}
         type={type}
         name={label.toLowerCase()}
-        className={"border-2 outline-none   border-purple-700 rounded p-2 font-semibold caret-purple-700 " + addClasses}
+        className={
+          "border-2 outline-none   border-purple-700 rounded p-2 font-semibold caret-purple-700 " +
+          addClasses
+        }
       />
+      {isLimited > 0 && (
+        <p
+          className={
+            "absolute right-4 top-0 translate-y-[-50%] px-1 bg-white dark:bg-gray-900 " +
+            (calc != isLimited ? "font-semibold text-purple-600" : null)
+          }
+        >
+          {calc}
+        </p>
+      )}
     </div>
   );
 }

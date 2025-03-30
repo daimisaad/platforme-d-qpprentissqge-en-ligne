@@ -41,6 +41,7 @@ export default function ProfileDown() {
         <img
           className="w-8 aspect-[1/1] rounded-full"
           src={"http://localhost:8000" + student["fr_image"]}
+          loading="lazy"
         />
         <ChevronDown size={"15"} />
       </div>

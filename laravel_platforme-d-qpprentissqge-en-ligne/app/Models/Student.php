@@ -11,7 +11,7 @@ class Student extends Authenticatable
     use HasApiTokens,Notifiable,HasFactory;
 
     protected $fillable = [
-        'nom', 'prenom', 'email', 'password', 'fr_image', 'bg_image'
+        'nom', 'prenom', 'headline','email', 'password', 'fr_image', 'bg_image'
     ];
 
     protected $hidden = [

@@ -24,7 +24,7 @@ const StudentApi = {
         Accept: "application/json",
         "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
       },
-      withXSRFToken: true,
+      
     });
   },
   studentLogout: async () => {
@@ -37,7 +37,7 @@ const StudentApi = {
             Accept: "application/json",
             "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
           },
-          withXSRFToken: true,
+          
         }
       )
       .catch((err) => {
@@ -50,8 +50,7 @@ const StudentApi = {
         Accept: "application/json",
         "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
       },
-      withCredentials: true,
-      withXSRFToken: true,
+      
     });
   },
   uploadPhoto: async (data) => {
@@ -64,8 +63,16 @@ const StudentApi = {
         "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
         "Content-Type": "multipart/form-data",
       },
-      withCredentials: true,
-      withXSRFToken: true,
+      
+    });
+  },
+  updateBasics: async (data) => {
+    return await axiosClient.post("/updatebasics", data, {
+      headers: {
+        Accept: "application/json",
+        "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
+      },
+      
     });
   },
 };
@@ -77,4 +84,5 @@ export const {
   getCsrfToken,
   studentRegister,
   uploadPhoto,
+  updateBasics
 } = StudentApi;

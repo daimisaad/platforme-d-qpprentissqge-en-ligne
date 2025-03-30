@@ -30,6 +30,7 @@ export default function Login() {
       await studentLogin(formData)
         .then(async (res) => {
           conditionLogin(res, 204, dispatch, navigate);
+          navigate('/')
         })
         .catch((err) => {
           if (err?.response?.data) {
