@@ -1,1 +1,1 @@
-# platforme-d-qpprentissqge-en-ligne
+# platforme-d-apprentissage-en-ligne
